@@ -5,11 +5,19 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- 내 카메라 영상 표시 -->
+    <!-- 상대방 영상 전체 화면 -->
+    <org.webrtc.SurfaceViewRenderer
+        android:id="@+id/remoteView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- 내 영상 작은 창 -->
     <org.webrtc.SurfaceViewRenderer
         android:id="@+id/localView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true" />
-
+        android:layout_width="120dp"
+        android:layout_height="160dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"/>
 </RelativeLayout>
+

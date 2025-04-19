@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/incoming_call_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="32dp">
+
+    <TextView
+        android:id="@+id/text_caller_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="남호님이 영상통화를 요청했습니다"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button_accept"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="40dp" />
+
+    <ImageButton
+        android:id="@+id/button_accept"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="12dp"
+        android:background="@android:color/transparent"
+        android:backgroundTint="#4CAF50"
+        android:contentDescription="수락"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_accept"
+        app:layout_constraintBottom_margin="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_decline"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/button_decline"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="20dp"
+        android:background="@android:color/transparent"
+        android:backgroundTint="#F44336"
+        android:contentDescription="거절"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_decline"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button_accept" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

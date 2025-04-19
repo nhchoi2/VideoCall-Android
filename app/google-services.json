@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1006177362002",
+    "firebase_url": "https://videocall-9ce13-default-rtdb.firebaseio.com",
+    "project_id": "videocall-9ce13",
+    "storage_bucket": "videocall-9ce13.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1006177362002:android:af7b7c6fcc4b09847c3f8b",
+        "android_client_info": {
+          "package_name": "com.example.videocall_android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClTERDGNczc3rnFzIOB2E7KDM6Rxrl1Cg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
