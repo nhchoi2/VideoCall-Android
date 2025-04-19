@@ -2,8 +2,7 @@ package com.example.videocall_android;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,9 +10,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class IncomingCallActivity extends AppCompatActivity {
 
-    private ConstraintLayout backgroundLayout;
-    private Button acceptButton, declineButton;
-    private TextView callerName;
+    public ConstraintLayout backgroundLayout;
+    public ImageButton acceptButton, declineButton;
+    public TextView callerName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +25,11 @@ public class IncomingCallActivity extends AppCompatActivity {
         callerName = findViewById(R.id.text_caller_name);
 
         // Example caller info
-        callerName.setText("남호님이 영상통화를 요청했습니다");
+        callerName.setText(getString(R.string.incoming_call_message));
+
+        // 푸시 알림에서 전달된 roomId 값을 인텐트에서 가져옴
+        String roomId = getIntent().getStringExtra("roomId");
+        android.util.Log.d("IncomingCall", "roomId: " + roomId);
 
         // Set blurred background drawable
         backgroundLayout.setBackgroundResource(R.drawable.blurred_background);

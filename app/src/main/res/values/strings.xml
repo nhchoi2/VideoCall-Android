@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">VideoCall-Android</string>
+    <string name="incoming_call_message">남호님이 영상통화를 요청했습니다</string>
 </resources>

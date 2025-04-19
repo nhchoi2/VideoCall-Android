@@ -35,6 +35,7 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_CODE = 1;
+    private final FirebaseDatabase database = FirebaseDatabase.getInstance();
     private SurfaceViewRenderer localView;
     private EglBase rootEglBase;
     private PeerConnectionFactory factory;
@@ -47,11 +48,31 @@ public class MainActivity extends AppCompatActivity {
 
     private SurfaceViewRenderer remoteView;
     private PeerConnection peerConnection;
+    private String roomId;
+    private String getOfferPath() {
+        return "rooms/" + roomId + "/offer";
+    }
 
+    private String getAnswerPath() {
+        return "rooms/" + roomId + "/answer";
+    }
+
+    private String getIceCandidatePath() {
+        return "rooms/" + roomId + "/candidates/userB";
+    }
+
+    /**
+     * Initializes the activity and starts the video if permissions are granted.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FirebaseApp.initializeApp(this);
+        roomId = getIntent().getStringExtra("roomId");
+        if (roomId == null || roomId.isEmpty()) {
+            roomId = "room123"; // 기본값
+        }
+
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(this, android.Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
@@ -63,9 +84,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Listens for incoming ICE candidates from Firebase and adds them to the peer connection.
+     */
     private void listenForIceCandidates() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference candidateRef = database.getReference("rooms/room123/candidates/userB");
+        DatabaseReference candidateRef = database.getReference(getIceCandidatePath());
 
         candidateRef.addChildEventListener(new com.google.firebase.database.ChildEventListener() {
             @Override
@@ -84,6 +107,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Creates and returns a VideoCapturer using Camera2 API.
+     */
     private VideoCapturer createVideoCapturer() {
         Camera2Enumerator enumerator = new Camera2Enumerator(this);
         for (String deviceName : enumerator.getDeviceNames()) {
@@ -102,6 +128,9 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
+    /**
+     * Cleans up resources when the activity is destroyed.
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -119,6 +148,9 @@ public class MainActivity extends AppCompatActivity {
         if (factory != null) factory.dispose();
     }
 
+    /**
+     * Handles the result of permission requests.
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -134,6 +166,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Initializes and starts the video call, sets up WebRTC and Firebase signaling.
+     */
     private void startVideo() {
         // ✅ 1. SurfaceViewRenderer 연결
         localView = findViewById(R.id.localView);
@@ -273,8 +308,7 @@ public class MainActivity extends AppCompatActivity {
                     loopbackPeer.setRemoteDescription(new SdpObserverAdapter(), sessionDescription);
 
                     // ✅ Firebase에 Offer 쓰기
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference offerRef = database.getReference("rooms/room123/offer");
+                    DatabaseReference offerRef = database.getReference(getOfferPath());
                     offerRef.setValue(sessionDescription.description);
 
                     loopbackPeer.createAnswer(new SdpObserver() {
@@ -282,8 +316,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onCreateSuccess(SessionDescription sessionDescription) {
                             loopbackPeer.setLocalDescription(new SdpObserverAdapter(), sessionDescription);
                             peerConnection.setRemoteDescription(new SdpObserverAdapter(), sessionDescription);
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference answerRef = database.getReference("rooms/room123/answer");
+                            DatabaseReference answerRef = database.getReference(getAnswerPath());
                             answerRef.setValue(sessionDescription.description);
                         }
 
@@ -303,9 +336,11 @@ public class MainActivity extends AppCompatActivity {
         listenForAnswer();
     }
 
+    /**
+     * Listens for remote answer from Firebase and sets the remote description.
+     */
     private void listenForAnswer() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference answerRef = database.getReference("rooms/room123/answer");
+        DatabaseReference answerRef = database.getReference(getAnswerPath());
 
         answerRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -322,9 +357,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Listens for remote offer from Firebase and sets the remote description.
+     */
     private void listenForOffer() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference offerRef = database.getReference("rooms/room123/offer");
+        DatabaseReference offerRef = database.getReference(getOfferPath());
 
         offerRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -347,4 +384,5 @@ public class MainActivity extends AppCompatActivity {
         @Override public void onCreateFailure(String s) {}
         @Override public void onSetFailure(String s) {}
     }
+
 }

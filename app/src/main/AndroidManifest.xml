@@ -9,6 +9,13 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+    <!-- 구글 로그인용 설정 -->
+    <meta-data
+        android:name="com.google.android.gms.client_id"
+        android:value="@string/default_web_client_id"/>
 
     <!-- 📡 cleartext HTTP 허용 (테스트용 Flask 서버에 접속 시 필요) -->
     <application
@@ -25,6 +32,14 @@
         android:networkSecurityConfig="@xml/network_security_config"
         tools:targetApi="31">
 
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_launcher" />
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/purple_500" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -33,6 +48,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
     </application>
 
