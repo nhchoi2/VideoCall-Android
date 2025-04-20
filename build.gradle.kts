@@ -1,12 +1,4 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
-plugins {
-    alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.kotlin.android) apply false
-}
-
-buildscript {
-    dependencies {
-        classpath("com.google.gms:google-services:4.4.1")
-    }
+// 비어있거나 별도 정의 없이 plugins 블록만 있을 수도 있음
+fun plugins() {
+    // 예: kotlin("jvm") version "1.8.21" or none
 }

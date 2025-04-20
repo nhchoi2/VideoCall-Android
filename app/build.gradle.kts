@@ -34,7 +34,6 @@ android {
     }
 }
 
-
 dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -43,13 +42,18 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // WebRTC
     implementation(libs.google.webrtc)
+
+    // Firebase (BOM)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.auth)
     implementation("com.google.firebase:firebase-database")
-    implementation("com.google.firebase:firebase-messaging")
     implementation("com.google.firebase:firebase-messaging:23.4.0")
-    implementation("com.google.firebase:firebase-auth:22.3.0") // 최신 버전
-    implementation("com.google.android.gms:play-services-auth:21.0.0") // 구글 로그인용
+    implementation("com.google.firebase:firebase-auth:22.3.0")
+
+    // Google Sign-In
+    implementation("com.google.android.gms:play-services-auth:21.0.0")
 }

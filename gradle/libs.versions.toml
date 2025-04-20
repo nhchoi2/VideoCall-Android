@@ -1,5 +1,6 @@
 [versions]
 agp = "8.9.0"
+kotlin = "1.9.22"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
@@ -25,5 +26,5 @@ firebase-auth = { module = "com.google.firebase:firebase-auth" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version = "1.9.22" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
