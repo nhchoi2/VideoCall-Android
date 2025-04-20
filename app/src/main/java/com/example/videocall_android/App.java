@@ -6,6 +6,6 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        // 앱 전체에서 초기화할 작업이 있다면 여기에 작성
+        // 애플리케이션이 시작될 때 한 번만 실행되는 초기화 코드 (예: Firebase 초기화, 로그 설정 등)
     }
 }

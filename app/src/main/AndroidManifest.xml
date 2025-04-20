@@ -39,7 +39,7 @@
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@colors/purple_500" />
+            android:resource="@color/purple_500" />
 
         <!-- 앱 실행 시 진입점 -->
         <activity

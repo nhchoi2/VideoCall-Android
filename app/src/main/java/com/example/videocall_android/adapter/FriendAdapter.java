@@ -14,7 +14,8 @@ import com.example.videocall_android.R;
 import java.util.List;
 
 /**
- * 친구 리스트를 표시하고 통화 버튼 이벤트를 전달하는 어댑터 클래스
+ * 이 어댑터는 친구 목록을 리사이클러뷰에 표시하며,
+ * 사용자가 통화 버튼을 클릭할 때 해당 친구의 이름을 콜백으로 전달합니다.
  */
 public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.FriendViewHolder> {
 

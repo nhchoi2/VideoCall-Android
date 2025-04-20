@@ -33,6 +33,7 @@ import org.webrtc.AudioSource;
 import org.webrtc.AudioTrack;
 import java.util.Arrays;
 
+// 🔷 메인 액티비티: 영상통화 기능의 중심이 되는 액티비티로, 카메라 초기화, PeerConnection 설정, Firebase 연결을 처리함
 public class MainActivity extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_CODE = 1;
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();

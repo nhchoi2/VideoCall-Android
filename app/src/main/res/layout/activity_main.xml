@@ -5,19 +5,56 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- 상대방 영상 전체 화면 -->
+    <!-- 상대방 영상 (전체 화면) -->
     <org.webrtc.SurfaceViewRenderer
         android:id="@+id/remoteView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="#000000" />
 
-    <!-- 내 영상 작은 창 -->
+    <!-- 내 영상 (작게 오른쪽 위) -->
     <org.webrtc.SurfaceViewRenderer
         android:id="@+id/localView"
         android:layout_width="120dp"
         android:layout_height="160dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="16dp"/>
-</RelativeLayout>
+        android:layout_margin="16dp" />
 
+    <!-- 하단 컨트롤 버튼 (마이크, 종료, 카메라 전환) -->
+    <LinearLayout
+        android:id="@+id/bottom_controls"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:layout_marginBottom="24dp"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/button_mute"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_mic"
+            android:contentDescription="마이크 끄기" />
+
+        <ImageButton
+            android:id="@+id/button_end_call"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_decline"
+            android:contentDescription="통화 종료" />
+
+        <ImageButton
+            android:id="@+id/button_switch_camera"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_switch_camera"
+            android:contentDescription="카메라 전환" />
+    </LinearLayout>
+
+</RelativeLayout>

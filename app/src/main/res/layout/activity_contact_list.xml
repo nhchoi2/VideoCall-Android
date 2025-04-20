@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- 연락처 기반 친구 리스트를 보여주는 RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_contacts"
         android:layout_width="0dp"

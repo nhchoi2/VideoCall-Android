@@ -1,0 +1,8 @@
+<!-- res/drawable/bg_blur_gradient.xml -->
+<gradient
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:type="linear"
+    android:angle="135"
+    android:startColor="#66000000"
+    android:centerColor="#993F51B5"
+    android:endColor="#FF2196F3" />

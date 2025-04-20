@@ -4,8 +4,10 @@
     android:id="@+id/incoming_call_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="32dp">
+    android:padding="32dp"
+    android:background="@drawable/bg_blur_gradient">
 
+    <!-- 호출자 이름 또는 메시지 -->
     <TextView
         android:id="@+id/text_caller_name"
         android:layout_width="0dp"
@@ -21,6 +23,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="40dp" />
 
+    <!-- 수락 버튼 -->
     <ImageButton
         android:id="@+id/button_accept"
         android:layout_width="72dp"
@@ -36,6 +39,7 @@
         app:layout_constraintEnd_toStartOf="@+id/button_decline"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <!-- 거절 버튼 -->
     <ImageButton
         android:id="@+id/button_decline"
         android:layout_width="72dp"

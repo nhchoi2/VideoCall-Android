@@ -13,7 +13,20 @@
           "package_name": "com.example.videocall_android"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1006177362002-nu68e9tr8ohnkrdi3erjk11urkavt5p2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.videocall_android",
+            "certificate_hash": "f93024a944b169ef34d0f2eaeee7050ea592b1e8"
+          }
+        },
+        {
+          "client_id": "1006177362002-1mvgfbhrn4or0sp5afagjte82d9ujtpm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyClTERDGNczc3rnFzIOB2E7KDM6Rxrl1Cg"
@@ -21,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1006177362002-1mvgfbhrn4or0sp5afagjte82d9ujtpm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
